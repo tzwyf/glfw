@@ -99,20 +99,17 @@ project "GLFW"
 		}
 
 	filter "configurations:Debug"
-		runtime "Debug"
-		symbols "on"
+    defines "HZ_DEBUG"
+    buildoptions "/MTd"
+    symbols "On"
 
-	filter { "system:windows", "configurations:Debug-AS" }	
-		runtime "Debug"
-		symbols "on"
-		sanitize { "Address" }
-		flags { "NoRuntimeChecks", "NoIncrementalLink" }
-
-	filter "configurations:Release"
-		runtime "Release"
-		optimize "speed"
+    filter "configurations:Release"
+    defines "HZ_RELEASE"
+    buildoptions "/MT"
+    symbols "On"
 
     filter "configurations:Dist"
-		runtime "Release"
-		optimize "speed"
-        symbols "off"
+    defines "HZ_DIST"
+    buildoptions "/MT"
+    symbols "On"
+
